@@ -9,7 +9,7 @@
     "description": "Run ilo-metrics rootless and distroless.",
     "introduction": "[ilo_exporter](https://github.com/MauveSoftware/ilo_exporter) (created by [MauveSoftware](https://github.com/MauveSoftware)). Metrics exporter for HP iLO to prometheus",
     "built": {
-      "ilo-metrics": "https://github.com/ilo-metrics/ilo-metrics"
+      "ilo_exporter": "https://github.com/MauveSoftware/ilo_exporter"
     },
     "distroless": {
       "layers": [
