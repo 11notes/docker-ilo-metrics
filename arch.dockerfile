@@ -41,6 +41,10 @@
     sed -i 's|host := r.URL.Query().Get("host")|if r.Method == "HEAD" { return nil }; host := r.URL.Query().Get("host")|g' ${BUILD_ROOT}/main.go;
 
   RUN set -ex; \
+    eleven patchGoMod ${BUILD_ROOT}/go.mod "google.golang.org/grpc|v1.79.3|CVE-2026-33186"; \
+    eleven patchGoMod ${BUILD_ROOT}/go.mod "go.opentelemetry.io/otel/sdk|v1.40.0|CVE-2026-24051";
+
+  RUN set -ex; \
     cd ${BUILD_ROOT}; \
     eleven go build ${BUILD_BIN} .;
 
@@ -52,7 +56,7 @@
 # ║                       IMAGE                         ║
 # ╚═════════════════════════════════════════════════════╝
 # :: HEADER
-  FROM alpine
+  FROM scratch
 
   # :: default arguments
     ARG TARGETPLATFORM \
