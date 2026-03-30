@@ -1,0 +1,66 @@
+name: "monitoring"
+
+x-lockdown: &lockdown
+  # prevents write access to the image itself
+  read_only: true
+  # prevents any process within the container to gain more privileges
+  security_opt:
+    - "no-new-privileges=true"
+
+services:
+  ilo-metrics:
+    image: "11notes/ilo-metrics:1.0.3"
+    <<: *lockdown
+    environment:
+      TZ: "Europe/Zurich"
+      ILO_METRICS_USER: "${ILO_METRICS_USER}"
+      ILO_METRICS_PASSWORD: "${ILO_METRICS_PASSWORD}"
+    ports:
+      - "9090:9090/tcp"
+    networks:
+      frontend:
+
+  prometheus:
+    # for more information about this image checkout:
+    # https://github.com/11notes/docker-prometheus
+    image: "11notes/prometheus:3.10.0"
+    <<: *lockdown
+    environment:
+      TZ: "Europe/Zurich"
+      PROMETHEUS_CONFIG: |-
+        global:
+          scrape_interval: 5s
+
+        scrape_configs:
+          - job_name: 'ilo'
+            scrape_interval: 120s
+            scrape_timeout: 60s
+            static_configs:
+              - targets:
+                - esx1.ilo.us.net.domain.com
+                - esx2.ilo.us.net.domain.com
+                - esx1.ilo.de.net.domain.com
+                - esx2.ilo.de.net.domain.com
+            relabel_configs:
+              - source_labels: [__address__]
+                target_label: __param_host
+              - source_labels: [__param_host]
+                target_label: instance
+                replacement: '$${1}'
+              - target_label: __address__
+                replacement: ilo-metrics:9090
+    volumes:
+      - "prometheus.etc:/prometheus/etc"
+      - "prometheus.var:/prometheus/var"
+    ports:
+      - "3000:9090/tcp"
+    networks:
+      frontend:
+    restart: "always"
+
+volumes:
+  prometheus.etc:
+  prometheus.var:
+
+networks:
+  frontend:
