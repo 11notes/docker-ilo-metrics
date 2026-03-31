@@ -296,7 +296,7 @@ jobs:
               for(const tag of docker.image.tags){
                 docker.tags.push(`${docker.image.name}:${docker.image.prefix}${tag}${docker.image.suffix}-${docker.image.platform.sanitized}`);
                 docker.tags.push(`ghcr.io/${docker.image.name}:${docker.image.prefix}${tag}${docker.image.suffix}-${docker.image.platform.sanitized}`);
-                //docker.tags.push(`quay.io/${docker.image.name}:${docker.image.prefix}${tag}${docker.image.suffix}-${docker.image.platform.sanitized}`);
+                docker.tags.push(`quay.io/${docker.image.name}:${docker.image.prefix}${tag}${docker.image.suffix}-${docker.image.platform.sanitized}`);
                 docker.merge_tags.push(`${docker.image.prefix}${tag}${docker.image.suffix}`);
               }
 
@@ -525,8 +525,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        registry: [docker.io, ghcr.io]
-        # registry: [docker.io, ghcr.io, quay.io]
+        registry: [docker.io, ghcr.io, quay.io]
 
     env:
       DOCKER_IMAGE_NAME: ${{ needs.docker.outputs.DOCKER_IMAGE_NAME }}
