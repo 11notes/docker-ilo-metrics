@@ -9,7 +9,7 @@ x-lockdown: &lockdown
 
 services:
   ilo-metrics:
-    image: "11notes/ilo-metrics:1.0.3"
+    image: "11notes/ilo-metrics:1.0.4"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
