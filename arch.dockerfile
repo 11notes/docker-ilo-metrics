@@ -32,7 +32,7 @@
       BUILD_BIN=/ilo-metrics
 
   RUN set -ex; \
-    eleven git clone ${BUILD_SRC} ${APP_VERSION};
+    eleven git clone ${BUILD_SRC} v${APP_VERSION};
 
   RUN set -ex; \
     # quiet down the log and do not process anything from health check
