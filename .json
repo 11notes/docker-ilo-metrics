@@ -3,7 +3,7 @@
   "name": "ilo-metrics",
   "root": "/",
   "semver": {
-    "version": "1.1.1"
+    "version": "1.1.2"
   },
   "readme": {
     "description": "Run ilo-metrics rootless and distroless.",
