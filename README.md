@@ -1,7 +1,7 @@
 ![banner](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/banner/README.png)
 
 # ILO-METRICS
-![size](https://img.shields.io/badge/image_size-21MB-green?color=%2338ad2d)![5px](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/markdown/transparent5x2px.png)![pulls](https://img.shields.io/docker/pulls/11notes/ilo-metrics?color=2b75d6)![5px](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/markdown/transparent5x2px.png)[<img src="https://img.shields.io/github/issues/11notes/docker-ilo-metrics?color=7842f5">](https://github.com/11notes/docker-ilo-metrics/issues)![5px](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/markdown/transparent5x2px.png)![swiss_made](https://img.shields.io/badge/Swiss_Made-FFFFFF?labelColor=FF0000&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0idHJhbnNwYXJlbnQiLz4KICA8cGF0aCBkPSJtMTMgNmg2djdoN3Y2aC03djdoLTZ2LTdoLTd2LTZoN3oiIGZpbGw9IiNmZmYiLz4KPC9zdmc+)
+![size](https://img.shields.io/badge/image_size-45MB-green?color=%2338ad2d)![5px](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/markdown/transparent5x2px.png)![pulls](https://img.shields.io/docker/pulls/11notes/ilo-metrics?color=2b75d6)![5px](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/markdown/transparent5x2px.png)[<img src="https://img.shields.io/github/issues/11notes/docker-ilo-metrics?color=7842f5">](https://github.com/11notes/docker-ilo-metrics/issues)![5px](https://raw.githubusercontent.com/11notes/static/refs/heads/master/img/markdown/transparent5x2px.png)![swiss_made](https://img.shields.io/badge/Swiss_Made-FFFFFF?labelColor=FF0000&logo=data:image/svg%2bxml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0idHJhbnNwYXJlbnQiLz4KICA8cGF0aCBkPSJtMTMgNmg2djdoN3Y2aC03djdoLTZ2LTdoLTd2LTZoN3oiIGZpbGw9IiNmZmYiLz4KPC9zdmc+)
 
 Run ilo-metrics rootless and distroless.
 
@@ -34,8 +34,8 @@ Below you find a comparison between this image and the most used or original one
 
 | **image** | **size on disk** | **init default as** | **[distroless](https://github.com/11notes/RTFM/blob/main/linux/container/image/distroless.md)** | supported architectures
 | ---: | ---: | :---: | :---: | :---: |
-| 11notes/ilo-metrics | 21MB | 1000:1000 | ✅ | amd64, arm64, armv7 |
-| mauvesoftware/ilo_exporter | 33MB | 0:0 | ❌ | amd64 |
+| 11notes/ilo-metrics | 45MB | 1000:1000 | ✅ | amd64, arm64, armv7 |
+| mauvesoftware/ilo_exporter | 51MB | 0:0 | ❌ | amd64 |
 
 # COMPOSE ✂️
 ```yaml
@@ -128,8 +128,6 @@ To find out how you can change the default UID/GID of this container image, cons
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
 * [1.1.3](https://hub.docker.com/r/11notes/ilo-metrics/tags?name=1.1.3)
-* [1.1.3-unraid](https://hub.docker.com/r/11notes/ilo-metrics/tags?name=1.1.3-unraid)
-* [1.1.3-nobody](https://hub.docker.com/r/11notes/ilo-metrics/tags?name=1.1.3-nobody)
 
 ### There is no latest tag, what am I supposed to do about updates?
 It is my opinion that the ```:latest``` tag is a bad habbit and should not be used at all. Many developers introduce **breaking changes** in new releases. This would messed up everything for people who use ```:latest```. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:1.1.3``` you can use ```:1``` or ```:1.1```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version. Which in theory should not introduce breaking changes.
@@ -142,12 +140,6 @@ docker pull 11notes/ilo-metrics:1.1.3
 docker pull ghcr.io/11notes/ilo-metrics:1.1.3
 docker pull quay.io/11notes/ilo-metrics:1.1.3
 ```
-
-# UNRAID VERSION 🟠
-This image supports unraid by default. Simply add **-unraid** to any tag and the image will run as 99:100 instead of 1000:1000.
-
-# NOBODY VERSION 👻
-This image supports nobody by default. Simply add **-nobody** to any tag and the image will run as 65534:65534 instead of 1000:1000.
 
 # SOURCE 💾
 * [11notes/ilo-metrics](https://github.com/11notes/docker-ilo-metrics)
@@ -170,4 +162,4 @@ This image supports nobody by default. Simply add **-nobody** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-ilo-metrics/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-ilo-metrics/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-ilo-metrics/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 23.10.2026, 06:06:12 (CET)*
+*created 17.11.2026, 07:43:06 (CET)*
