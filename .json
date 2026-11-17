@@ -20,5 +20,7 @@
     "comparison": {
       "image": "mauvesoftware/ilo_exporter"
     }
-  }
+  },
+  "unraid": true,
+  "nobody": true
 }
